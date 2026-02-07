@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CSRP-PS | California State RolePlay™ - PlayStation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Styl dla wyróżnionego tekstu powitalnego */
+        .welcome-highlight {
+            background: linear-gradient(135deg, rgba(30, 144, 255, 0.1) 0%, rgba(0, 210, 255, 0.1) 100%);
+            border-left: 4px solid var(--accent-cyan);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .welcome-highlight h2 {
+            margin-top: 0;
+            color: var(--accent-cyan);
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="support">Web Support: merrui_</div>
+
+    <button id="menu-toggle">Rozwiń Sekcje Menu</button>
+
+    <div id="start-panel">
+        <div class="panel-content">
+            <h2 class="hero-title">
+                California State RolePlay™<br>
+                <span class="hero-subtitle">PlayStation Edition</span>
+            </h2>
+            <div class="divider"></div>
+            <p class="hero-quote">"Projekt z Myślą o Graczach"</p>
+            <button id="start-btn">ODWIEDŹ STRONĘ</button>
+        </div>
+    </div>
+
+    <nav id="sidebar">
+        <h3 style="text-align:center; color:var(--accent-cyan);">Menu Sekcji CSRP</h3>
+        <a href="pojecia.html">Pojęcia RolePlay i Zagadnienia</a>
+        <a href="strefy.html">Strefy Bezpieczeństwa i Narkotykowe</a>
+        <a href="regulamin.html">Regulamin Projektu</a>
+        <a href="trello.html">Trello</a>
+      
+        <a href="index.html" id="back-link">Odśwież</a>
+    </nav>
+
+    <main id="main">
+        
+        <header class="welcome-highlight">
+            <h2>Oficjalna Strona California State RolePlay — Witaj!</h2>
+            <p>
+                California State RolePlay to projekt o charakterze role-play na konsoli PlayStation Old Generation.
+                Jest to projekt typu Hard RolePlay gdzie realizm i autentyczność odgrywają kluczową rolę.
+            </p>
+        </header>
+
+        <div id="ciekawostki" class="expand-box">
+            <button class="expand-trigger" onclick="toggleExpand(this)">
+                <strong>Czy wiedziałeś, że...?</strong> <span class="icon">▼</span>
+            </button>
+            <div class="expand-content">
+                <div class="inner-padding">
+                    <ul class="fact-list">
+                        <li>Pierwsza edycja projektu (2024) liczyła niemal 200 członków.</li>
+                        <li>Projekt CSRP za czasów pierwszej edycji był rekordowo najdłużej utrzymującym się projektem na scenie mimo kryzysów zatrudnienia zawodowego i późnego okresu otwarcia.</li>
+                        <li>Właściciel teraźniejszego serwera princce__ z każdym projektem dopracowywał poziom oraz jakość jak najbardziej dbając o autentyczność realiów odgrywania by móc poczuć się jak w wirtualnej rzeczywitości.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-grid">
+            <div id="liderzy" class="expand-box">
+                <button class="expand-trigger" onclick="toggleExpand(this)">
+                    Lista Head of / Osób Państwowych <span class="icon">+</span>
+                </button>
+                <div class="expand-content">
+                    <div class="inner-padding">
+                        <ul>
+                            <li>Prokurator Generalny – <em>Brak</em></li>
+                            <li>Gubernator Stanu – <em>Brak</em></li>
+                            <li>Head of Crime – HD_Oneto</li>
+                            <li>Head of Street Gangs – <em>Brak</em></li>
+                            <li>Head of Events – Kaktosanczo, HD_Oneto</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="rekrutacja" class="expand-box">
+                <button class="expand-trigger" onclick="toggleExpand(this)">
+                    Rekrutacja WL (FAQ) <span class="icon">+</span>
+                </button>
+                <div class="expand-content">
+                    <div class="inner-padding">
+                        <p>Wymagany Wiek: 14+</p>
+                        <p>Pozostałe informacje o rekrutacji WL znajdziesz na kanale "faq".</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 CSRP-PS. Wszystkie prawa zastrzeżone. Designed by merrui_.</p>
+        </footer>
+    </main>
+
+    <script>
+        // Start Panel
+        document.getElementById('start-btn').onclick = () => {
+            const p = document.getElementById('start-panel');
+            p.classList.add('panel-hidden');
+            setTimeout(() => p.style.display = 'none', 800);
+        };
+
+        // Mobile Menu
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+        menuToggle.onclick = () => {
+            sidebar.classList.toggle('active');
+            menuToggle.textContent = sidebar.classList.contains('active') ? 'ZAMKNIJ' : 'MENU';
+        };
+
+        // Naprawiona funkcja rozwijania - blokuje otwieranie wielu sekcji
+        function toggleExpand(btn) {
+            const content = btn.nextElementSibling;
+            const allBoxes = document.querySelectorAll('.expand-box');
+            
+            const isOpen = content.style.maxHeight && content.style.maxHeight !== "0px";
+
+            // Zamykanie wszystkich sekcji przed otwarciem nowej
+            allBoxes.forEach(box => {
+                const boxContent = box.querySelector('.expand-content');
+                const boxIcon = box.querySelector('.icon');
+                
+                boxContent.style.maxHeight = null;
+                
+                // Reset ikon
+                if (box.id === 'ciekawostki') {
+                    boxIcon.textContent = '▼';
+                } else {
+                    boxIcon.textContent = '+';
+                }
+            });
+
+            // Otwieranie tylko klikniętej sekcji
+            if (!isOpen) {
+                content.style.maxHeight = content.scrollHeight + "px";
+                const icon = btn.querySelector('.icon');
+                
+                if (btn.closest('#ciekawostki')) {
+                    icon.textContent = '▲';
+                } else {
+                    icon.textContent = '−';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

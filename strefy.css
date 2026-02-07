@@ -1,0 +1,183 @@
+/* RESET I PODSTAWA */
+body {
+    background: radial-gradient(circle at top, #0a0f30 0%, #050a24 100%) !important;
+    color: #f0f4ff;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* SUPPORT HUD */
+#support {
+    position: fixed !important;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    background: rgba(0, 210, 255, 0.1) !important;
+    backdrop-filter: blur(10px);
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 210, 255, 0.3) !important;
+    font-weight: bold;
+    color: #00d2ff !important;
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+}
+
+/* PANEL STARTOWY (POMARAŃCZOWY NEON) */
+#start-panel {
+    position: fixed;
+    inset: 0;
+    background: #02071d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#start-panel.hide {
+    opacity: 0;
+    transform: translateY(-100%) scale(1.1);
+    pointer-events: none;
+}
+
+#start-panel h1 {
+    color: #ff8c00 !important;
+    font-size: 3rem;
+    text-transform: uppercase;
+    text-shadow: 0 0 30px rgba(255, 140, 0, 0.6);
+    margin: 0;
+}
+
+#start-btn {
+    padding: 18px 50px;
+    background: linear-gradient(135deg, #ff8c00 0%, #ff4500 100%) !important;
+    border: none;
+    color: white;
+    font-weight: 900;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 10px 30px rgba(255, 140, 0, 0.3);
+    transition: 0.3s ease;
+}
+
+#start-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(255, 140, 0, 0.5);
+}
+
+/* GŁÓWNA SEKCJA */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    animation: fadeInPage 1s ease-out;
+}
+
+@keyframes fadeInPage {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* KONTENER KART */
+.strefy-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+
+/* KARTA STREFY */
+.strefa-card {
+    height: 450px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #0d1235;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.strefa-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+    z-index: 1;
+}
+
+.strefa-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(255,255,255,0.3);
+}
+
+.strefa-title {
+    position: relative;
+    padding: 40px;
+    color: white;
+    font-size: 24px;
+    font-weight: 900;
+    z-index: 2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.strefa-card.wide { grid-column: 1 / span 2; }
+
+/* KOLORYSTYKA I POŚWIATA (GLOW) */
+.bg-strefy-bezpieczne { 
+    background-image: url('strefybezpieczne.zdjecie.jpg'); 
+    border-bottom: 5px solid #2ecc71 !important; 
+}
+.bg-strefy-bezpieczne:hover { box-shadow: 0 20px 40px rgba(46, 204, 113, 0.3); }
+
+.bg-strefy-niebezpieczne { 
+    background-image: url('strefyniebezpieczne.zdjecie.webp'); 
+    border-bottom: 5px solid #ffffff !important; 
+}
+.bg-strefy-niebezpieczne:hover { box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1); }
+
+.bg-strefy-narkotykowe { 
+    background-image: url('strefynarkotykowe.zdjecie.webp'); 
+    border-bottom: 5px solid #8b4513 !important; 
+}
+.bg-strefy-narkotykowe:hover { box-shadow: 0 20px 40px rgba(139, 69, 19, 0.3); }
+
+/* FOOTER */
+footer {
+    padding: 60px;
+    text-align: center;
+}
+
+.back-link {
+    color: #ff8c00;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    border: 1px solid rgba(0, 210, 255, 0.2);
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    background: rgba(0, 210, 255, 0.1);
+    box-shadow: 0 0 20px rgb(255, 145, 0);
+}
+
+/* RESPONSYWNOŚĆ */
+@media (max-width: 900px) {
+    .strefy-container { grid-template-columns: 1fr; }
+    .strefa-card.wide { grid-column: 1; }
+    .strefa-card { height: 300px; }
+    #start-panel h1 { font-size: 1.8rem; }
+}
